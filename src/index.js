@@ -7,9 +7,17 @@ import ContactList from "./Components/ContactList/ContactList";
 
 const App = () => {
   return (
-    <div>
-      <h1>Contact list app</h1>
-      <ContactList />
+    <div className="container">
+      <div id="card_contacts">
+        <div
+          id="contacts"
+          className="panel-collapse collapse show"
+          aria-expanded="true"
+        >
+          <h1>Contact list app</h1>
+          <ContactList />
+        </div>
+      </div>
     </div>
   );
 };
