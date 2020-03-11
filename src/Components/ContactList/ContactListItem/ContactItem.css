@@ -2,3 +2,8 @@
   cursor: pointer;
   color: darkorange;
 }
+
+#contact-list button {
+  display: inline-block;
+  width: 25%;
+}

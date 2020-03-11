@@ -4,10 +4,29 @@ import "./ContactList.css";
 // Component
 import ContactItem from "./ContactListItem/ContactItem";
 
-const ContactList = () => {
+const ContactList = ({ List, onStarChange }) => {
+  console.log("ContactList => ", List);
+
+  const item = List.map(item => {
+    return (
+      <ContactItem
+        key={item.id}
+        name={item.name}
+        address={item.address}
+        avatar={item.avatar}
+        phone={item.phone}
+        gender={item.gender}
+        email={item.email}
+        star={item.star}
+        onStarChange
+        onStarChange={() => onStarChange(item.id)}
+      />
+    );
+  });
+
   return (
     <ul className="list-group pull-down" id="contact-list">
-      <ContactItem />
+      {item}
     </ul>
   );
 };

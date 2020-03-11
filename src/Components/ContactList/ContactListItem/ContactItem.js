@@ -3,12 +3,13 @@ import "./ContactItem.css";
 
 class ContactItem extends Component {
   state = {
-    name: "Mike Tyson",
-    address: "Harm, Stepana Banderu str.",
-    phone: "(097)888-21-12",
-    email: "tyson@ukr.net",
-    avatar: 16,
-    gender: "men"
+    name: this.props.name,
+    address: this.props.address,
+    phone: this.props.phone,
+    email: this.props.email,
+    avatar: this.props.avatar,
+    gender: this.props.gender,
+    star: this.props.star
   };
 
   onRandomAvatar = () => {
@@ -18,12 +19,25 @@ class ContactItem extends Component {
     });
   };
 
+  onStar = () => {
+    // let star = this.state.star;
+    // this.setState({
+    //   star: !star
+    // });
+    // this.props.onStarChange();
+  };
+
   render() {
-    const { name, address, phone, email, avatar, gender } = this.state;
+    const { name, address, phone, email, avatar, gender, star } = this.state;
     const URL = `https://api.randomuser.me/portraits/${gender}/${avatar}.jpg`;
-    // if (favorite) {
-    // }
-    const favoriteStyle = "fa fa-star-o fa-2x";
+
+    if (star) {
+      var favoriteStyle = "fa fa-star fa-1x";
+    } else {
+      var favoriteStyle = "fa fa-star-o fa-1x";
+    }
+    // console.log("Contact item props => ", this.props);
+
     return (
       <Fragment>
         <li className="list-group-item">
@@ -39,7 +53,13 @@ class ContactItem extends Component {
               <span
                 className="fa fa-mobile fa-2x text-success float-right pulse"
                 title="online now"
-              ></span>
+              >
+                <i
+                  className={favoriteStyle}
+                  aria-hidden="true"
+                  onClick={this.props.onStarChange}
+                ></i>
+              </span>
               <label className="name lead">{name}</label>
               <br />
               <span
@@ -71,7 +91,6 @@ class ContactItem extends Component {
         <button className="btn btn-success" onClick={this.onRandomAvatar}>
           Random avatar
         </button>
-        <i className={favoriteStyle} aria-hidden="true"></i>
       </Fragment>
     );
   }
