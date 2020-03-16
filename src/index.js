@@ -4,7 +4,7 @@ import "./index.css";
 
 // Components
 import ContactList from "./Components/ContactList/ContactList";
-import { stat } from "fs";
+import AddContact from "./Components/AddContact/AddContact";
 
 class App extends React.Component {
   state = {
@@ -55,6 +55,11 @@ class App extends React.Component {
     });
   };
 
+  onAddContact = (name, address) => {
+    console.log("NewName = ", name);
+    console.log("Newaddress = ", address);
+  };
+
   render() {
     return (
       <div className="container">
@@ -69,6 +74,7 @@ class App extends React.Component {
               List={this.state.List}
               onStarChange={this.onStarChange}
             />
+            <AddContact onAddContact={this.onAddContact} />
           </div>
         </div>
       </div>
