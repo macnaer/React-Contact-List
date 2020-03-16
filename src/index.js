@@ -55,9 +55,11 @@ class App extends React.Component {
     });
   };
 
-  onAddContact = (name, address) => {
+  onAddContact = (name, address, telnumber, email) => {
     console.log("NewName = ", name);
     console.log("Newaddress = ", address);
+    console.log("NewtelNumber = ", telnumber);
+    console.log("Newemail = ", email);
   };
 
   render() {
