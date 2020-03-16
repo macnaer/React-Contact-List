@@ -7,6 +7,7 @@ import ContactList from "./Components/ContactList/ContactList";
 import AddContact from "./Components/AddContact/AddContact";
 
 class App extends React.Component {
+  currentID = 1000;
   state = {
     List: [
       {
@@ -56,10 +57,21 @@ class App extends React.Component {
   };
 
   onAddContact = (name, address, telnumber, email) => {
-    console.log("NewName = ", name);
-    console.log("Newaddress = ", address);
-    console.log("NewtelNumber = ", telnumber);
-    console.log("Newemail = ", email);
+    // console.log("NewName = ", name);
+    // console.log("Newaddress = ", address);
+    // console.log("NewtelNumber = ", telnumber);
+    // console.log("Newemail = ", email);
+    let newContact = {
+      id: this.currentID++,
+      name: name,
+      address: address,
+      avatar: 67,
+      phone: telnumber,
+      gender: "men",
+      email: email,
+      star: false
+    };
+    console.log(newContact);
   };
 
   render() {
