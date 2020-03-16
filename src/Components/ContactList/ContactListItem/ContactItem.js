@@ -28,10 +28,10 @@ class ContactItem extends Component {
   };
 
   render() {
-    const { name, address, phone, email, avatar, gender, star } = this.state;
+    const { name, address, phone, email, avatar, gender } = this.state;
     const URL = `https://api.randomuser.me/portraits/${gender}/${avatar}.jpg`;
 
-    if (star) {
+    if (this.props.star) {
       var favoriteStyle = "fa fa-star fa-1x";
     } else {
       var favoriteStyle = "fa fa-star-o fa-1x";

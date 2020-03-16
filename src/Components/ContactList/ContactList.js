@@ -18,7 +18,6 @@ const ContactList = ({ List, onStarChange }) => {
         gender={item.gender}
         email={item.email}
         star={item.star}
-        onStarChange
         onStarChange={() => onStarChange(item.id)}
       />
     );

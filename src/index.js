@@ -4,6 +4,7 @@ import "./index.css";
 
 // Components
 import ContactList from "./Components/ContactList/ContactList";
+import { stat } from "fs";
 
 class App extends React.Component {
   state = {
@@ -42,7 +43,16 @@ class App extends React.Component {
   };
 
   onStarChange = id => {
-    console.log("onStarChange", id);
+    // console.log("onStarChange", id);
+    this.setState(state => {
+      const index = this.state.List.findIndex(elem => elem.id === id);
+      // console.log("Index = ", index);
+      const tmpList = this.state.List.slice();
+      tmpList[index].star = !tmpList[index].star;
+      return {
+        star: !this.tmpList
+      };
+    });
   };
 
   render() {
