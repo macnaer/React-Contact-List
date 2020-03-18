@@ -5,7 +5,7 @@ class AddContact extends React.Component {
   state = {
     name: null,
     address: null,
-    gender: "men",
+    gender: null,
     telNumber: null,
     email: null,
     avatar: null
@@ -61,7 +61,9 @@ class AddContact extends React.Component {
             onChange={this.getAddress}
           />
           <input
-            type="text"
+            type="number"
+            min="1"
+            max="99"
             placeholder="Avatar"
             className="form-control"
             onChange={this.getAvatar}
@@ -78,7 +80,7 @@ class AddContact extends React.Component {
             className="form-control"
             onChange={this.getTelNumber}
           />
-          <input
+          {/* <input
             type="radio"
             name="gender"
             className="form-check-input"
@@ -88,7 +90,7 @@ class AddContact extends React.Component {
 
           <label htmlFor="gender_man" className="form-check-label">
             Men
-          </label>
+          </label> */}
           <button className="btn btn-success" type="submit">
             Add new contact
           </button>

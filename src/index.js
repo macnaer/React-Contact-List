@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import uuid from "uuid";
 import "./index.css";
 
 // Components
@@ -7,11 +8,10 @@ import ContactList from "./Components/ContactList/ContactList";
 import AddContact from "./Components/AddContact/AddContact";
 
 class App extends React.Component {
-  currentID = 1000;
   state = {
     List: [
       {
-        id: 1,
+        id: uuid(),
         name: "Britney Anders",
         address: "Rivne, Best street",
         avatar: 50,
@@ -21,7 +21,7 @@ class App extends React.Component {
         star: true
       },
       {
-        id: 2,
+        id: uuid(),
         name: "Will Smith",
         address: "Lviv, Zamarstunivska 12",
         avatar: 12,
@@ -31,7 +31,7 @@ class App extends React.Component {
         star: false
       },
       {
-        id: 3,
+        id: uuid(),
         name: "Will Street",
         address: "Odessa, Beribasivska 121",
         avatar: 67,
@@ -56,22 +56,24 @@ class App extends React.Component {
     });
   };
 
-  onAddContact = (name, address, telnumber, email) => {
-    // console.log("NewName = ", name);
-    // console.log("Newaddress = ", address);
-    // console.log("NewtelNumber = ", telnumber);
-    // console.log("Newemail = ", email);
+  onAddContact = (name, address, telnumber, email, avatar) => {
     let newContact = {
-      id: this.currentID++,
+      id: uuid(),
       name: name,
       address: address,
-      avatar: 67,
+      avatar: avatar,
       phone: telnumber,
       gender: "women",
       email: email,
       star: false
     };
-    console.log(newContact);
+
+    const newList = [...this.state.List, newContact];
+    this.setState(state => {
+      return {
+        List: newList
+      };
+    });
   };
 
   render() {

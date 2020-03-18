@@ -36,7 +36,7 @@ class ContactItem extends Component {
     } else {
       var favoriteStyle = "fa fa-star-o fa-1x";
     }
-    // console.log("Contact item props => ", this.props);
+    console.log("Contact id props => ", this.props.id);
 
     return (
       <Fragment>

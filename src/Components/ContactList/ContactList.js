@@ -11,6 +11,7 @@ const ContactList = ({ List, onStarChange }) => {
     return (
       <ContactItem
         key={item.id}
+        id={item.id}
         name={item.name}
         address={item.address}
         avatar={item.avatar}
