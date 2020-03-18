@@ -7,7 +7,14 @@ class AddContact extends React.Component {
     address: null,
     gender: "men",
     telNumber: null,
-    email: null
+    email: null,
+    avatar: null
+  };
+
+  getAvatar = event => {
+    this.setState({
+      avatar: event.target.value
+    });
   };
 
   getName = event => {
@@ -32,19 +39,15 @@ class AddContact extends React.Component {
     });
   };
 
-  onSubmit = event => {
+  onSendData = event => {
     event.preventDefault();
-    this.props.onAddContact(
-      this.state.name,
-      this.state.address,
-      this.state.telNumber,
-      this.state.email
-    );
+    const { name, address, telNumber, email, avatar } = this.state;
+    this.props.onAddContact(name, address, telNumber, email, avatar);
   };
   render() {
     return (
       <div>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSendData}>
           <input
             type="text"
             placeholder="Name"
@@ -56,6 +59,12 @@ class AddContact extends React.Component {
             placeholder="Address"
             className="form-control"
             onChange={this.getAddress}
+          />
+          <input
+            type="text"
+            placeholder="Avatar"
+            className="form-control"
+            onChange={this.getAvatar}
           />
           <input
             type="text"

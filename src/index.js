@@ -67,7 +67,7 @@ class App extends React.Component {
       address: address,
       avatar: 67,
       phone: telnumber,
-      gender: "men",
+      gender: "women",
       email: email,
       star: false
     };
