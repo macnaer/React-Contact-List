@@ -32,9 +32,9 @@ class ContactItem extends Component {
     const URL = `https://api.randomuser.me/portraits/${gender}/${avatar}.jpg`;
 
     if (this.props.star) {
-      var favoriteStyle = "fa fa-star fa-1x";
+      var favoriteStyle = "fa fa-star fa-2x";
     } else {
-      var favoriteStyle = "fa fa-star-o fa-1x";
+      var favoriteStyle = "fa fa-star-o fa-2x";
     }
     //console.log("Contact id props => ", this.props.id);
 
@@ -54,7 +54,8 @@ class ContactItem extends Component {
                 className="fa fa-trash fa-2x text-danger float-right pulse"
                 title="Delete"
                 onClick={this.props.onDeleteContact}
-              >
+              ></span>
+              <span className=" float-right pulse">
                 <i
                   className={favoriteStyle}
                   aria-hidden="true"

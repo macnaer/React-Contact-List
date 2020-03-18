@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import uuid from "uuid";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./index.css";
 
 // Components
@@ -100,13 +101,33 @@ class App extends React.Component {
             className="panel-collapse collapse show"
             aria-expanded="true"
           >
-            <h1>Contact list app</h1>
-            <ContactList
-              List={this.state.List}
-              onStarChange={this.onStarChange}
-              onDeleteContact={this.onDeleteContact}
-            />
-            <AddContact onAddContact={this.onAddContact} />
+            <nav>
+              <ul>
+                <li>
+                  <a href="#">Header component</a>
+                </li>
+              </ul>
+            </nav>
+            <Router>
+              <Switch>
+                <Route
+                  path="/"
+                  exact
+                  render={() => (
+                    <ContactList
+                      List={this.state.List}
+                      onStarChange={this.onStarChange}
+                      onDeleteContact={this.onDeleteContact}
+                    />
+                  )}
+                />
+                <Route
+                  path="/contact"
+                  exact
+                  render={() => <AddContact onAddContact={this.onAddContact} />}
+                />
+              </Switch>
+            </Router>
           </div>
         </div>
       </div>
