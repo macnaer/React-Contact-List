@@ -5,13 +5,12 @@ import "./ContactList.css";
 import ContactItem from "./ContactListItem/ContactItem";
 
 const ContactList = ({ List, onStarChange, onDeleteContact }) => {
-  console.log("ContactList => ", List);
+  // console.log("ContactList => ", List);
 
   const item = List.map(item => {
     return (
       <ContactItem
         key={item.id}
-        id={item.id}
         name={item.name}
         address={item.address}
         avatar={item.avatar}

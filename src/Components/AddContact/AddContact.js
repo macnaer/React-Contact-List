@@ -53,12 +53,14 @@ class AddContact extends React.Component {
             placeholder="Name"
             className="form-control"
             onChange={this.getName}
+            required
           />
           <input
             type="text"
             placeholder="Address"
             className="form-control"
             onChange={this.getAddress}
+            required
           />
           <input
             type="number"
@@ -67,18 +69,21 @@ class AddContact extends React.Component {
             placeholder="Avatar"
             className="form-control"
             onChange={this.getAvatar}
+            required
           />
           <input
             type="text"
             placeholder="Email"
             className="form-control"
             onChange={this.getEmail}
+            required
           />
           <input
             type="text"
             placeholder="Tel number"
             className="form-control"
             onChange={this.getTelNumber}
+            required
           />
           {/* <input
             type="radio"

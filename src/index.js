@@ -6,6 +6,7 @@ import "./index.css";
 // Components
 import ContactList from "./Components/ContactList/ContactList";
 import AddContact from "./Components/AddContact/AddContact";
+import { stat } from "fs";
 
 class App extends React.Component {
   state = {
@@ -78,8 +79,16 @@ class App extends React.Component {
 
   onDeleteContact = id => {
     const index = this.state.List.findIndex(elem => elem.id === id);
-    // console.log("Delete contact = ", id);
-    // console.log("Delete contact index = ", index);
+
+    const partOne = this.state.List.slice(0, index);
+    const partTwo = this.state.List.slice(index + 1);
+    const newList = [...partOne, ...partTwo];
+    //console.log("NewList => ", newList);
+    this.setState(state => {
+      return {
+        List: newList
+      };
+    });
   };
 
   render() {
