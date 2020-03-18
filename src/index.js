@@ -76,6 +76,12 @@ class App extends React.Component {
     });
   };
 
+  onDeleteContact = id => {
+    const index = this.state.List.findIndex(elem => elem.id === id);
+    // console.log("Delete contact = ", id);
+    // console.log("Delete contact index = ", index);
+  };
+
   render() {
     return (
       <div className="container">
@@ -89,6 +95,7 @@ class App extends React.Component {
             <ContactList
               List={this.state.List}
               onStarChange={this.onStarChange}
+              onDeleteContact={this.onDeleteContact}
             />
             <AddContact onAddContact={this.onAddContact} />
           </div>

@@ -36,7 +36,7 @@ class ContactItem extends Component {
     } else {
       var favoriteStyle = "fa fa-star-o fa-1x";
     }
-    console.log("Contact id props => ", this.props.id);
+    //console.log("Contact id props => ", this.props.id);
 
     return (
       <Fragment>
@@ -51,8 +51,9 @@ class ContactItem extends Component {
             </div>
             <div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
               <span
-                className="fa fa-mobile fa-2x text-success float-right pulse"
-                title="online now"
+                className="fa fa-trash fa-2x text-danger float-right pulse"
+                title="Delete"
+                onClick={this.props.onDeleteContact}
               >
                 <i
                   className={favoriteStyle}
@@ -66,7 +67,7 @@ class ContactItem extends Component {
                 className="fa fa-map-marker fa-fw text-muted"
                 data-toggle="tooltip"
                 title=""
-                data-original-title="5842 Hillcrest Rd"
+                data-original-title={address}
               ></span>
               <span className="text-muted">{address}</span>
               <br />
@@ -74,7 +75,7 @@ class ContactItem extends Component {
                 className="fa fa-phone fa-fw text-muted"
                 data-toggle="tooltip"
                 title=""
-                data-original-title="(870) 288-4149"
+                data-original-title={phone}
               ></span>
               <span className="text-muted small">{phone}</span>
               <br />
