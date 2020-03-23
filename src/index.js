@@ -7,7 +7,7 @@ import "./index.css";
 // Components
 import ContactList from "./Components/ContactList/ContactList";
 import AddContact from "./Components/AddContact/AddContact";
-import { stat } from "fs";
+import Header from "./Components/Header/Header";
 
 class App extends React.Component {
   state = {
@@ -101,14 +101,8 @@ class App extends React.Component {
             className="panel-collapse collapse show"
             aria-expanded="true"
           >
-            <nav>
-              <ul>
-                <li>
-                  <a href="#">Header component</a>
-                </li>
-              </ul>
-            </nav>
             <Router>
+              <Header />
               <Switch>
                 <Route
                   path="/"
