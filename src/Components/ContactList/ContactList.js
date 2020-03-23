@@ -4,7 +4,12 @@ import "./ContactList.css";
 // Component
 import ContactItem from "./ContactListItem/ContactItem";
 
-const ContactList = ({ List, onStarChange, onDeleteContact }) => {
+const ContactList = ({
+  List,
+  onStarChange,
+  onDeleteContact,
+  onEditContact
+}) => {
   // console.log("ContactList => ", List);
 
   const item = List.map(item => {
@@ -20,6 +25,7 @@ const ContactList = ({ List, onStarChange, onDeleteContact }) => {
         star={item.star}
         onStarChange={() => onStarChange(item.id)}
         onDeleteContact={() => onDeleteContact(item.id)}
+        onEditContact={() => onEditContact(item.id)}
       />
     );
   });

@@ -8,6 +8,7 @@ import "./index.css";
 import ContactList from "./Components/ContactList/ContactList";
 import AddContact from "./Components/AddContact/AddContact";
 import Header from "./Components/Header/Header";
+import EditContact from "./Components/EditContact/EditContact";
 
 class App extends React.Component {
   state = {
@@ -42,7 +43,8 @@ class App extends React.Component {
         email: "street@gmail.com",
         star: false
       }
-    ]
+    ],
+    currentContact: ""
   };
 
   onStarChange = id => {
@@ -92,6 +94,15 @@ class App extends React.Component {
     });
   };
 
+  onEditContact = id => {
+    const index = this.state.List.findIndex(elem => elem.id === id);
+    const currentContact = this.state.List[index];
+    // console.log(currentContact);
+    this.setState({
+      currentContact: currentContact
+    });
+  };
+
   render() {
     return (
       <div className="container">
@@ -112,6 +123,7 @@ class App extends React.Component {
                       List={this.state.List}
                       onStarChange={this.onStarChange}
                       onDeleteContact={this.onDeleteContact}
+                      onEditContact={this.onEditContact}
                     />
                   )}
                 />
@@ -119,6 +131,13 @@ class App extends React.Component {
                   path="/contact"
                   exact
                   render={() => <AddContact onAddContact={this.onAddContact} />}
+                />
+                <Route
+                  path="/edit"
+                  exact
+                  render={() => (
+                    <EditContact currentContact={this.state.currentContact} />
+                  )}
                 />
               </Switch>
             </Router>

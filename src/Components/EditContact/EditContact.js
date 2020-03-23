@@ -1,8 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import "./AddContact.css";
+import "./EditContact.css";
 
-class AddContact extends React.Component {
+class EditContact extends React.Component {
   state = {
     name: null,
     address: null,
@@ -50,6 +50,7 @@ class AddContact extends React.Component {
     });
   };
   render() {
+    console.log("props =>", this.props);
     if (this.state.isRedirect) {
       return <Redirect to="/" />;
     }
@@ -105,12 +106,11 @@ class AddContact extends React.Component {
             Men
           </label> */}
           <button className="btn btn-success" type="submit">
-            Add new contact
+            Save chages
           </button>
         </form>
       </div>
     );
   }
 }
-
-export default AddContact;
+export default EditContact;
