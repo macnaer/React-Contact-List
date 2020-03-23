@@ -30,7 +30,7 @@ class App extends React.Component {
         avatar: 12,
         phone: "(050)888-33-44",
         gender: "men",
-        email: "will@smitj.com",
+        email: "will@smith.com",
         star: false
       },
       {
@@ -103,6 +103,26 @@ class App extends React.Component {
     });
   };
 
+  onEditCurrentContact = (id, name, address, telnumber, email, avatar) => {
+    const index = this.state.List.findIndex(elem => elem.id === id);
+    let editedContact = {
+      id: id,
+      name: name,
+      address: address,
+      avatar: avatar,
+      phone: telnumber,
+      gender: "women",
+      email: email,
+      star: false
+    };
+    const partOne = this.state.List.slice(0, index);
+    const partTwo = this.state.List.slice(index + 1);
+    const newList = [...partOne, editedContact, ...partTwo];
+    this.setState({
+      List: newList
+    });
+  };
+
   render() {
     return (
       <div className="container">
@@ -136,7 +156,10 @@ class App extends React.Component {
                   path="/edit"
                   exact
                   render={() => (
-                    <EditContact currentContact={this.state.currentContact} />
+                    <EditContact
+                      currentContact={this.state.currentContact}
+                      onEditCurrentContact={this.onEditCurrentContact}
+                    />
                   )}
                 />
               </Switch>
