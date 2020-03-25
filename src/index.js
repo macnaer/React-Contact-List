@@ -12,76 +12,27 @@ import EditContact from "./Components/EditContact/EditContact";
 import NotFound from "./Components/NotFound/NotFound";
 
 class App extends React.Component {
-  // constructor() {
-  //   super();
-  //   console.log("Constructor");
-  // }
+  URL = "https://contactlist-87ffb.firebaseio.com/List.json";
 
   componentDidMount() {
-    URL = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
-    fetch(URL, {
-      method: "GET"
-    })
+    this.updateContactList();
+  }
+
+  updateContactList = () => {
+    fetch(this.URL)
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        console.log(data);
+      .then(list => {
+        this.setState({
+          List: list
+        });
       })
       .catch(err => console.log(err));
-    console.log("componentDidMount");
-  }
-
-  // shouldComponentUpdate(prevProps, nextState) {
-  //   console.log("shouldComponentUpdate");
-  //   console.log("prevProps => ", prevProps);
-  //   console.log("nextState => ", nextState);
-  //   // if (nextState.List[0].star === false) {
-  //   //   return false;
-  //   // }
-  //   return true;
-  // }
-
-  // componentDidUpdate() {
-  //   console.log("componentDidUpdate");
-  // }
-  // componentWillUnmount() {
-  //   console.log("componentWillUnmount");
-  // }
+  };
 
   state = {
-    List: [
-      {
-        id: uuid(),
-        name: "Britney Anders",
-        address: "Rivne, Best street",
-        avatar: 50,
-        phone: "(067)888-77-44",
-        gender: "women",
-        email: "anders@gmail.com",
-        star: true
-      },
-      {
-        id: uuid(),
-        name: "Will Smith",
-        address: "Lviv, Zamarstunivska 12",
-        avatar: 12,
-        phone: "(050)888-33-44",
-        gender: "men",
-        email: "will@smith.com",
-        star: false
-      },
-      {
-        id: uuid(),
-        name: "Will Street",
-        address: "Odessa, Beribasivska 121",
-        avatar: 67,
-        phone: "(097)784-77-12",
-        gender: "men",
-        email: "street@gmail.com",
-        star: false
-      }
-    ],
+    List: [],
     currentContact: "",
     findContact: ""
   };
