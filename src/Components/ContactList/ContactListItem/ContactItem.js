@@ -27,6 +27,9 @@ class ContactItem extends Component {
     // });
     // this.props.onStarChange();
   };
+  // componentWillUnmount() {
+  //   console.log("componentWillUnmount");
+  // }
 
   render() {
     const { name, address, phone, email, avatar, gender } = this.state;

@@ -12,6 +12,43 @@ import EditContact from "./Components/EditContact/EditContact";
 import NotFound from "./Components/NotFound/NotFound";
 
 class App extends React.Component {
+  // constructor() {
+  //   super();
+  //   console.log("Constructor");
+  // }
+
+  componentDidMount() {
+    URL = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
+    fetch(URL, {
+      method: "GET"
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => console.log(err));
+    console.log("componentDidMount");
+  }
+
+  // shouldComponentUpdate(prevProps, nextState) {
+  //   console.log("shouldComponentUpdate");
+  //   console.log("prevProps => ", prevProps);
+  //   console.log("nextState => ", nextState);
+  //   // if (nextState.List[0].star === false) {
+  //   //   return false;
+  //   // }
+  //   return true;
+  // }
+
+  // componentDidUpdate() {
+  //   console.log("componentDidUpdate");
+  // }
+  // componentWillUnmount() {
+  //   console.log("componentWillUnmount");
+  // }
+
   state = {
     List: [
       {
