@@ -9,6 +9,7 @@ import ContactList from "./Components/ContactList/ContactList";
 import AddContact from "./Components/AddContact/AddContact";
 import Header from "./Components/Header/Header";
 import EditContact from "./Components/EditContact/EditContact";
+import NotFound from "./Components/NotFound/NotFound";
 
 class App extends React.Component {
   state = {
@@ -44,7 +45,8 @@ class App extends React.Component {
         star: false
       }
     ],
-    currentContact: ""
+    currentContact: "",
+    findContact: ""
   };
 
   onStarChange = id => {
@@ -123,7 +125,27 @@ class App extends React.Component {
     });
   };
 
+  onSearch = contactName => {
+    // console.log("contactName -> ", contactName);
+    this.setState({
+      findContact: contactName
+    });
+  };
+
+  onShowContactList = (List, findContact) => {
+    if (findContact.length === 0) {
+      return List;
+    }
+    return List.filter(item => {
+      return item.name.toLowerCase().indexOf(findContact.toLowerCase()) > -1;
+    });
+  };
+
   render() {
+    const showContacts = this.onShowContactList(
+      this.state.List,
+      this.state.findContact
+    );
     return (
       <div className="container">
         <div id="card_contacts">
@@ -133,14 +155,14 @@ class App extends React.Component {
             aria-expanded="true"
           >
             <Router>
-              <Header />
+              <Header onSearch={this.onSearch} />
               <Switch>
                 <Route
                   path="/"
                   exact
                   render={() => (
                     <ContactList
-                      List={this.state.List}
+                      List={showContacts}
                       onStarChange={this.onStarChange}
                       onDeleteContact={this.onDeleteContact}
                       onEditContact={this.onEditContact}
@@ -162,6 +184,7 @@ class App extends React.Component {
                     />
                   )}
                 />
+                <Route component={NotFound} />
               </Switch>
             </Router>
           </div>

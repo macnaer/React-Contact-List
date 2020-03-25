@@ -62,14 +62,14 @@ class EditContact extends React.Component {
         <form onSubmit={this.onSendData}>
           <input
             type="text"
-            placeholder={name}
+            value={name}
             className="form-control"
             onChange={this.getName}
             required
           />
           <input
             type="text"
-            placeholder={address}
+            value={address}
             className="form-control"
             onChange={this.getAddress}
             required
@@ -78,21 +78,21 @@ class EditContact extends React.Component {
             type="number"
             min="1"
             max="99"
-            placeholder={avatar}
+            value={avatar}
             className="form-control"
             onChange={this.getAvatar}
             required
           />
           <input
             type="text"
-            placeholder={email}
+            value={email}
             className="form-control"
             onChange={this.getEmail}
             required
           />
           <input
             type="text"
-            placeholder={phone}
+            value={phone}
             className="form-control"
             onChange={this.getTelNumber}
             required
