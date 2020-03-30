@@ -3,15 +3,12 @@ import "./ContactList.css";
 
 // Component
 import ContactItem from "./ContactListItem/ContactItem";
-
 const ContactList = ({
   List,
   onStarChange,
   onDeleteContact,
   onEditContact
 }) => {
-  // console.log("ContactList => ", List);
-
   const item = List.map(item => {
     return (
       <ContactItem
@@ -32,7 +29,7 @@ const ContactList = ({
 
   return (
     <ul className="list-group pull-down" id="contact-list">
-      {item}
+      {item.length !== 0 ? item : <h2>Contact list is empty.</h2>}
     </ul>
   );
 };

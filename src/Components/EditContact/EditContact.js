@@ -52,52 +52,61 @@ class EditContact extends React.Component {
     });
   };
   render() {
-    const { name, address, phone, email, avatar, gender } = this.state;
-    // console.log("props =>", this.props);
+    const {
+      name = "Jane Doe",
+      address = "London Capital stret",
+      phone = "(098)999-45-67",
+      email = "jane@london.com",
+      avatar = 1,
+      gender = "women"
+    } = this.state;
+    console.log("Avatar => ", avatar);
+    const URL = `https://api.randomuser.me/portraits/${gender}/${avatar}.jpg`;
     if (this.state.isRedirect) {
       return <Redirect to="/" />;
     }
     return (
-      <div>
-        <form onSubmit={this.onSendData}>
-          <input
-            type="text"
-            value={name}
-            className="form-control"
-            onChange={this.getName}
-            required
-          />
-          <input
-            type="text"
-            value={address}
-            className="form-control"
-            onChange={this.getAddress}
-            required
-          />
-          <input
-            type="number"
-            min="1"
-            max="99"
-            value={avatar}
-            className="form-control"
-            onChange={this.getAvatar}
-            required
-          />
-          <input
-            type="text"
-            value={email}
-            className="form-control"
-            onChange={this.getEmail}
-            required
-          />
-          <input
-            type="text"
-            value={phone}
-            className="form-control"
-            onChange={this.getTelNumber}
-            required
-          />
-          {/* <input
+      <div className="row">
+        <div className="col-md-10">
+          <form onSubmit={this.onSendData}>
+            <input
+              type="text"
+              value={name}
+              className="form-control"
+              onChange={this.getName}
+              required
+            />
+            <input
+              type="text"
+              value={address}
+              className="form-control"
+              onChange={this.getAddress}
+              required
+            />
+            <input
+              type="number"
+              min="1"
+              max="99"
+              value={avatar}
+              className="form-control"
+              onChange={this.getAvatar}
+              required
+            />
+            <input
+              type="text"
+              value={email}
+              className="form-control"
+              onChange={this.getEmail}
+              required
+            />
+            <input
+              type="text"
+              value={phone}
+              className="form-control"
+              onChange={this.getTelNumber}
+              required
+            />
+            {/* <input
             type="radio"
             name="gender"
             className="form-check-input"
@@ -108,10 +117,21 @@ class EditContact extends React.Component {
           <label htmlFor="gender_man" className="form-check-label">
             Men
           </label> */}
-          <button className="btn btn-success" type="submit">
-            Save chages
-          </button>
-        </form>
+            <button className="btn btn-success" type="submit">
+              Save chages
+            </button>
+          </form>
+        </div>
+        <div className="col-md-2">
+          {avatar.length !== 0 ? (
+            <img
+              className="rounded-circle mx-auto d-block img-fluid edit_photo"
+              src={URL}
+            />
+          ) : (
+            <h3>No foto</h3>
+          )}
+        </div>
       </div>
     );
   }
