@@ -38,10 +38,8 @@ class App extends React.Component {
   };
 
   onStarChange = id => {
-    // console.log("onStarChange", id);
     this.setState(state => {
       const index = this.state.List.findIndex(elem => elem.id === id);
-      // console.log("Index = ", index);
       const tmpList = this.state.List.slice();
       tmpList[index].star = !tmpList[index].star;
       return {
@@ -63,11 +61,12 @@ class App extends React.Component {
     };
 
     const newList = [...this.state.List, newContact];
-    this.setState(state => {
-      return {
-        List: newList
-      };
-    });
+    this.onSaveData(newList);
+    // this.setState(state => {
+    //   return {
+    //     List: newList
+    //   };
+    // });
   };
 
   onDeleteContact = id => {
@@ -76,7 +75,6 @@ class App extends React.Component {
     const partOne = this.state.List.slice(0, index);
     const partTwo = this.state.List.slice(index + 1);
     const newList = [...partOne, ...partTwo];
-    //console.log("NewList => ", newList);
     this.setState(state => {
       return {
         List: newList
@@ -87,11 +85,25 @@ class App extends React.Component {
   onEditContact = id => {
     const index = this.state.List.findIndex(elem => elem.id === id);
     const currentContact = this.state.List[index];
-    // console.log(currentContact);
     this.setState({
       currentContact: currentContact
     });
   };
+
+  async onSaveData(newList) {
+    await fetch(this.URL, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newList)
+    })
+      .then(responce => {
+        console.log("Responce => ".responce);
+      })
+      .catch(err => console.log("Catch => ", err.Message));
+    this.updateContactList();
+  }
 
   onEditCurrentContact = (id, name, address, telnumber, email, avatar) => {
     const index = this.state.List.findIndex(elem => elem.id === id);
