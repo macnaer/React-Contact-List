@@ -38,7 +38,7 @@ class ContactItem extends Component {
     if (this.props.star) {
       var favoriteStyle = "fa fa-star fa-2x";
     } else {
-      var favoriteStyle = "fa fa-star-o fa-2x";
+      favoriteStyle = "fa fa-star-o fa-2x";
     }
     //console.log("Contact id props => ", this.props.id);
 

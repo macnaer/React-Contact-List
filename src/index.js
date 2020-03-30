@@ -62,11 +62,11 @@ class App extends React.Component {
 
     const newList = [...this.state.List, newContact];
     this.onSaveData(newList);
-    // this.setState(state => {
-    //   return {
-    //     List: newList
-    //   };
-    // });
+    this.setState(state => {
+      return {
+        List: newList
+      };
+    });
   };
 
   onDeleteContact = id => {
@@ -75,6 +75,7 @@ class App extends React.Component {
     const partOne = this.state.List.slice(0, index);
     const partTwo = this.state.List.slice(index + 1);
     const newList = [...partOne, ...partTwo];
+    this.onSaveData(newList);
     this.setState(state => {
       return {
         List: newList
@@ -102,7 +103,7 @@ class App extends React.Component {
         console.log("Responce => ".responce);
       })
       .catch(err => console.log("Catch => ", err.Message));
-    this.updateContactList();
+    // this.updateContactList();
   }
 
   onEditCurrentContact = (id, name, address, telnumber, email, avatar) => {
@@ -120,6 +121,7 @@ class App extends React.Component {
     const partOne = this.state.List.slice(0, index);
     const partTwo = this.state.List.slice(index + 1);
     const newList = [...partOne, editedContact, ...partTwo];
+    this.onSaveData(newList);
     this.setState({
       List: newList
     });
