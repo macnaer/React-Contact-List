@@ -12,7 +12,7 @@ import EditContact from "./Components/EditContact/EditContact";
 import NotFound from "./Components/NotFound/NotFound";
 
 class App extends React.Component {
-  URL = "https://contactlist-87ffb.firebaseio.com/List.json";
+  URL = "https://contactlist-87ffb.firebaseio.com/List.json"; // Url to firebase
 
   componentDidMount() {
     this.updateContactList();
@@ -20,36 +20,36 @@ class App extends React.Component {
 
   updateContactList = () => {
     fetch(this.URL)
-      .then(response => {
+      .then((response) => {
         return response.json();
       })
-      .then(list => {
+      .then((list) => {
         if (list == null) {
           this.setState({
-            List: []
+            List: [],
           });
         } else {
           this.setState({
-            List: list
+            List: list,
           });
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   state = {
     List: [],
     currentContact: "",
-    findContact: ""
+    findContact: "",
   };
 
-  onStarChange = id => {
-    this.setState(state => {
-      const index = this.state.List.findIndex(elem => elem.id === id);
+  onStarChange = (id) => {
+    this.setState((state) => {
+      const index = this.state.List.findIndex((elem) => elem.id === id);
       const tmpList = this.state.List.slice();
       tmpList[index].star = !tmpList[index].star;
       return {
-        star: !this.tmpList
+        star: !this.tmpList,
       };
     });
   };
@@ -63,37 +63,37 @@ class App extends React.Component {
       phone: telnumber,
       gender: "women",
       email: email,
-      star: false
+      star: false,
     };
 
     const newList = [...this.state.List, newContact];
     this.onSaveData(newList);
-    this.setState(state => {
+    this.setState((state) => {
       return {
-        List: newList
+        List: newList,
       };
     });
   };
 
-  onDeleteContact = id => {
-    const index = this.state.List.findIndex(elem => elem.id === id);
+  onDeleteContact = (id) => {
+    const index = this.state.List.findIndex((elem) => elem.id === id);
 
     const partOne = this.state.List.slice(0, index);
     const partTwo = this.state.List.slice(index + 1);
     const newList = [...partOne, ...partTwo];
     this.onSaveData(newList);
-    this.setState(state => {
+    this.setState((state) => {
       return {
-        List: newList
+        List: newList,
       };
     });
   };
 
-  onEditContact = id => {
-    const index = this.state.List.findIndex(elem => elem.id === id);
+  onEditContact = (id) => {
+    const index = this.state.List.findIndex((elem) => elem.id === id);
     const currentContact = this.state.List[index];
     this.setState({
-      currentContact: currentContact
+      currentContact: currentContact,
     });
   };
 
@@ -101,19 +101,19 @@ class App extends React.Component {
     await fetch(this.URL, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(newList)
+      body: JSON.stringify(newList),
     })
-      .then(responce => {
+      .then((responce) => {
         console.log("Responce => ".responce);
       })
-      .catch(err => console.log("Catch => ", err.Message));
+      .catch((err) => console.log("Catch => ", err.Message));
     // this.updateContactList();
   }
 
   onEditCurrentContact = (id, name, address, telnumber, email, avatar) => {
-    const index = this.state.List.findIndex(elem => elem.id === id);
+    const index = this.state.List.findIndex((elem) => elem.id === id);
     let editedContact = {
       id: id,
       name: name,
@@ -122,21 +122,21 @@ class App extends React.Component {
       phone: telnumber,
       gender: "women",
       email: email,
-      star: false
+      star: false,
     };
     const partOne = this.state.List.slice(0, index);
     const partTwo = this.state.List.slice(index + 1);
     const newList = [...partOne, editedContact, ...partTwo];
     this.onSaveData(newList);
     this.setState({
-      List: newList
+      List: newList,
     });
   };
 
-  onSearch = contactName => {
+  onSearch = (contactName) => {
     // console.log("contactName -> ", contactName);
     this.setState({
-      findContact: contactName
+      findContact: contactName,
     });
   };
 
@@ -144,7 +144,7 @@ class App extends React.Component {
     if (findContact.length === 0) {
       return List;
     }
-    return List.filter(item => {
+    return List.filter((item) => {
       return item.name.toLowerCase().indexOf(findContact.toLowerCase()) > -1;
     });
   };
