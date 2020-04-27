@@ -10,13 +10,13 @@ class ContactItem extends Component {
     email: this.props.email,
     avatar: this.props.avatar,
     gender: this.props.gender,
-    star: this.props.star
+    star: this.props.star,
   };
 
   onRandomAvatar = () => {
     const avatar = Math.floor(Math.random() * Math.floor(99));
     this.setState({
-      avatar: avatar
+      avatar: avatar,
     });
   };
 
@@ -100,7 +100,7 @@ class ContactItem extends Component {
             </div>
           </div>
         </li>
-        <button className="btn btn-success" onClick={this.onRandomAvatar}>
+        <button className="btn btn-warning" onClick={this.onRandomAvatar}>
           Random avatar
         </button>
       </Fragment>
