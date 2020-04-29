@@ -100,7 +100,7 @@ class ContactItem extends Component {
             </div>
           </div>
         </li>
-        <button className="btn btn-danger" onClick={this.onRandomAvatar}>
+        <button className="btn btn-warning" onClick={this.onRandomAvatar}>
           Random avatar
         </button>
       </Fragment>
